@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"oswald-h.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="很巧地，DSA在比赛前一天刚好学习了，然后第二天就是ECDSA。挺费力，最后是解出了一题。其他的看不了，根本没啥时间。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024西湖论剑">
+<meta property="og:url" content="http://oswald-h.github.io/2024/02/01/2024%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/index.html">
+<meta property="og:site_name" content="Oswald&#39;s Blog">
+<meta property="og:description" content="很巧地，DSA在比赛前一天刚好学习了，然后第二天就是ECDSA。挺费力，最后是解出了一题。其他的看不了，根本没啥时间。">
+<meta property="og:locale">
+<meta property="article:published_time" content="2024-01-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-01-31T16:00:00.000Z">
+<meta property="article:author" content="Oswald">
+<meta property="article:tag" content="Crypto">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://oswald-h.github.io/2024/02/01/2024%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"default","comments":true,"permalink":"http://oswald-h.github.io/2024/02/01/2024%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/","path":"2024/02/01/2024西湖论剑/","title":"2024西湖论剑"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2024西湖论剑 | Oswald's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Oswald's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#or1cle"><span class="nav-number">1.</span> <span class="nav-text"> Or1cle</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text"> 题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="nav-number">1.2.</span> <span class="nav-text"> 解题思路</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">2.</span> <span class="nav-text"> 总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Oswald</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Oswald-H" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Oswald-H" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="default">
+    <link itemprop="mainEntityOfPage" href="http://oswald-h.github.io/2024/02/01/2024%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Oswald">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Oswald's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2024西湖论剑 | Oswald's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2024西湖论剑
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-02-01 00:00" itemprop="dateCreated datePublished" datetime="2024-02-01T00:00:00+08:00">2024-02-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-02-01 00:00" itemprop="dateModified" datetime="2024-02-01T00:00:00+08:00">2024-02-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>很巧地，DSA在比赛前一天刚好学习了，然后第二天就是ECDSA。挺费力，最后是解出了一题。其他的看不了，根本没啥时间。</p>
+<span id="more"></span>
+<h1 id="or1cle"><a class="markdownIt-Anchor" href="#or1cle"></a> Or1cle</h1>
+<h2 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h2>
+<p>给了一个交互，源码啥的都没给，然后就猜呗。<br />
+有签名，sign，和gift这些功能。</p>
+<p>gift没发现有什么用，但是出题人说这是有用的，增加增加签名次数，但不懂，等别人wp吧。签名功能上也没发现有什么问题。</p>
+<p>但sign这个就有问题了，只能输入定长的数据，输入别的内容会爆源码，从这里才发现签名里面的nonce由异或做的，可以找到maple写的有个类似的题目<a target="_blank" rel="noopener" href="https://blog.maple3142.net/2022/02/28/tsjctf-2021-writeups/#signature">TSJ CTF 2022 WriteUps | 廢文集中區 (maple3142.net)</a>。</p>
+<p>但我不是用的maple的办法，在后面发现了一个用格的师傅写了<a target="_blank" rel="noopener" href="https://tttang.com/archive/1458/">从TSJCTF &amp; Codegate的两道crypto题中学习新姿势 - 跳跳糖 (tttang.com)</a>，用格还是很方便修改脚本的。</p>
+<p>然后就跟xenny有关，在签名那里试着用’xenny’这个字符串做签名居然不行，于是就猜测题目的意思是找到私钥，然后制作一个’xenny’的签名进而得到flag。</p>
+<h2 id="解题思路"><a class="markdownIt-Anchor" href="#解题思路"></a> 解题思路</h2>
+<blockquote>
+<p>第一部分是交互拿5次数据，（为什么5次，因为爆到第六次居然出了部分源码了，没了就。。。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># %%</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">from</span> fastecdsa.curve <span class="keyword">import</span> secp256k1 <span class="keyword">as</span> CURVE</span><br><span class="line"><span class="keyword">from</span> fastecdsa.curve <span class="keyword">import</span> secp256k1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">r = remote(<span class="string">&quot;xxxxxx&quot;</span>,<span class="string">&quot;xxxxxx&quot;</span>)</span><br><span class="line"><span class="comment"># context.log_level=&quot;debug&quot;</span></span><br><span class="line"><span class="comment"># r.interactive()</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">inter</span>(<span class="params">x</span>):</span><br><span class="line">    r.recvuntil(<span class="string">b&#x27;exit\n&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="string">b&#x27;1&#x27;</span>)</span><br><span class="line">    r.sendline(<span class="built_in">str</span>(x).encode())</span><br><span class="line">    z = <span class="built_in">int</span>(hashlib.sha256(<span class="built_in">str</span>(x).encode()).hexdigest(),<span class="number">16</span>)</span><br><span class="line">    digs = <span class="built_in">str</span>(r.recvline()).split(<span class="string">&quot;: &quot;</span>)[<span class="number">1</span>].replace(<span class="string">&quot;\\n&#x27;&quot;</span>,<span class="string">&quot;&quot;</span>).replace(<span class="string">&quot; &quot;</span>,<span class="string">&quot;&quot;</span>)</span><br><span class="line">    t,s = <span class="built_in">int</span>(digs[:<span class="number">64</span>],<span class="number">16</span>),<span class="built_in">int</span>(digs[<span class="number">64</span>:],<span class="number">16</span>)</span><br><span class="line">    <span class="keyword">return</span> (z,t,s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># print(inter(1))</span></span><br><span class="line"></span><br><span class="line">lis = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">    lis.append(inter(i))</span><br><span class="line"><span class="comment"># print(lis)</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>第二部分用了格攻击，也是幸运吧，5次交互的数据居然够用。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">attack</span>(<span class="params">lis</span>):</span><br><span class="line">    m = <span class="number">5</span></span><br><span class="line">    n = <span class="number">257</span></span><br><span class="line">    </span><br><span class="line">    UL = matrix.identity(m) * CURVE.q</span><br><span class="line">    UR = matrix.zero(m, n)</span><br><span class="line">    DR = matrix.identity(n)</span><br><span class="line"></span><br><span class="line">    main_mat = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">        z, r, s = lis[i]</span><br><span class="line">        vec = [-(s-<span class="number">1</span>)*z]</span><br><span class="line">        zbin = <span class="built_in">bin</span>(z)[<span class="number">2</span>:].zfill(<span class="number">256</span>)</span><br><span class="line">        <span class="keyword">assert</span> <span class="built_in">len</span>(zbin) == <span class="number">256</span></span><br><span class="line">        zbin = zbin[::-<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">256</span>):</span><br><span class="line">            tmp = (<span class="number">2</span>^i) * (r + (<span class="number">2</span>*<span class="built_in">int</span>(zbin[i])-<span class="number">1</span>) * s) % (CURVE.q)</span><br><span class="line">            vec.append(tmp)</span><br><span class="line">        main_mat.append(vec)</span><br><span class="line">    mat = matrix(ZZ, main_mat).T</span><br><span class="line"></span><br><span class="line">    M = block_matrix(ZZ, [[UL, UR], [mat, DR]])</span><br><span class="line">    M = M.LLL()</span><br><span class="line">    <span class="comment"># print(M)</span></span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> M:</span><br><span class="line">        <span class="keyword">if</span> row[<span class="number">5</span>] == <span class="number">1</span> <span class="keyword">and</span> <span class="built_in">set</span>(row[<span class="number">6</span>:]).issubset([<span class="number">0</span>, <span class="number">1</span>]):</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;Find solution!&#x27;</span>)</span><br><span class="line">            d = <span class="built_in">int</span>(<span class="string">&#x27;&#x27;</span>.join(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">str</span>, row[<span class="number">6</span>:][::-<span class="number">1</span>]))), <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> d</span><br><span class="line"></span><br><span class="line">d = attack(lis)</span><br><span class="line"><span class="comment"># print(d)</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>第三部分就是按照给出的签名和验证进行签名，费老半天了，用sage的椭圆曲线跑不出来不知道怎么回事。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># %%</span></span><br><span class="line">P = d*secp256k1.G</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">signature</span>(<span class="params">msg</span>):</span><br><span class="line">    h = <span class="built_in">int</span>(hashlib.sha256(msg).hexdigest(),<span class="number">16</span>)</span><br><span class="line">    k = h^^d</span><br><span class="line">    r = (k*secp256k1.G).x</span><br><span class="line">    s = inverse_mod(k,secp256k1.q) * (h + r*d) % secp256k1.q</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;%064x%064x&#x27;</span> % (r, s)</span><br><span class="line"></span><br><span class="line">msg = <span class="string">b&#x27;xenny&#x27;</span></span><br><span class="line">m = signature(msg)</span><br><span class="line"><span class="built_in">print</span>(m)</span><br><span class="line"></span><br><span class="line">r.interactive()</span><br><span class="line">r.sendline(<span class="string">b&#x27;2&#x27;</span>)</span><br><span class="line">r.recvline()</span><br><span class="line">r.sendline(m.encode())</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h1>
+<p>只做出一道题，很费力，还是太菜了。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>Oswald
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="http://oswald-h.github.io/2024/02/01/2024%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/" title="2024西湖论剑">http://oswald-h.github.io/2024/02/01/2024西湖论剑/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Crypto/" rel="tag"># Crypto</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/01/28/NSSCTF%20Round_17%20Basic/" rel="prev" title="NSSCTF Round_17 Basic">
+                  <i class="fa fa-angle-left"></i> NSSCTF Round_17 Basic
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/06/28/%E6%9F%90%E6%AF%94%E8%B5%9B%20Crypto%20%E6%96%B9%E5%90%91%20%EF%BC%88%E4%B8%89%E9%A2%98%E5%85%A8%EF%BC%89%20ee68828a505d464d80a09a381869d6a5/" rel="next" title="某比赛 Crypto 方向 （三题全）">
+                  某比赛 Crypto 方向 （三题全） <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Oswald</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>Word count total: </span>
+    <span title="Word count total">9k</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.12/pdfobject.min.js","integrity":"sha256-g2xji1rlE3KsGVClvuxTbcR0Kn2+wtQADSff2Tbb4zA="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js","integrity":"sha256-mm3Re3y7xlvh+yCD+l/Zs1d+PU0AEad93MkWvljfm/s="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+  <script class="next-config" data-name="wavedrom" type="application/json">{"enable":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/wavedrom/3.3.0/wavedrom.min.js","integrity":"sha256-IRMDzTC+wK5stMucZ/XSXkeS5VNtxZ+/Bm8Mcqfoxdo="}}</script>
+  <script class="next-config" data-name="wavedrom_skin" type="application/json">{"enable":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/wavedrom/3.3.0/skins/default.js","integrity":"sha256-fduc/Zszk5ezWws2uInY/ALWVmIrmV6VTgXbsYSReFI="}}</script>
+  <script src="/js/third-party/tags/wavedrom.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js","integrity":"sha256-Us54+rSGDSTvIhKKUs4kygE2ipA0RXpWWh0/zLqw3bs="}}</script>
+  <script src="/js/third-party/math/katex.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"http://oswald-h.github.io/2024/02/01/2024%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"Oswald-H","repo":"Oswald-H.github.io","client_id":"Ov23lisfElWAh6O9rsAG","client_secret":"77a8826104253b3aeac97594aa98361551f892c8","admin_user":"Oswald-H","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"8c7e51e0a14addb0e2aea20b07da7c54"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
